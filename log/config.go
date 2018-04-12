@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/imperfectgo/zap-syslog"
+	"github.com/imperfectgo/zap-syslog/syslog"
 	"github.com/pkg/errors"
-	"github.com/timonwong/zap-syslog"
-	"github.com/timonwong/zap-syslog/syslog"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )

@@ -20,7 +20,8 @@ matrix:
 notifications:
   email: false
 
-install: true
+install:
+  - make dep
 
 script:
   - make fmtcheck

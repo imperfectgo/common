@@ -12,7 +12,6 @@ DEP                     := $(FIRST_GOPATH)/bin/dep
 OVERALLS                := $(FIRST_GOPATH)/bin/overalls
 GOIMPORTS               := $(FIRST_GOPATH)/bin/goimports
 GOMETALINTER            := $(FIRST_GOPATH)/bin/gometalinter
-GODOC2GHMD              := $(FIRST_GOPATH)/bin/godoc2ghmd
 
 export REPO_PATH
 
@@ -44,11 +43,6 @@ $(GOMETALINTER):
 	@echo ">> installing gometalinter"
 	@$(GO) get -u "github.com/alecthomas/gometalinter"
 	@$(GOMETALINTER) --install --update
-
-
-$(GODOC2GHMD):
-	@echo ">> installing godoc2ghmd tool"
-	@$(GO) get -u "github.com/GandalfUK/godoc2ghmd"
 
 
 .PHONY: dep
@@ -97,18 +91,3 @@ fmtcheck: $(GOMETALINTER)
 format: $(GOIMPORTS)
 	@echo ">> formatting code"
 	@$(GOIMPORTS) -local "$(REPO_PATH)" -w $(GOFMT_FILES)
-
-
-.PHONY: gendocs
-gendocs: $(GODOC2GHMD)
-	@echo ">> generating docs"
-	@for i in $$(find . -iname 'doc.go' -not -path "*vendor/*"); do \
-		dir=$${i%/*}; \
-		realdir=$$(realpath $$dir); \
-		package=$${realdir##${FIRST_GOPATH}/src/}; \
-		echo "generating docs in $$package"; \
-		pushd $${dir} >/dev/null; \
-		$(GODOC2GHMD) -ex -file DOC.md $${package}; \
-		ln -s DOC.md README.md 2>/dev/null || true; \
-		popd>/dev/null; \
-	done;

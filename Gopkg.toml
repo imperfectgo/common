@@ -24,8 +24,8 @@
   version = "1.7.1"
 
 [[constraint]]
-  name = "github.com/timonwong/zap-syslog"
-  version = "0.1.0"
+  name = "github.com/imperfectgo/zap-syslog"
+  version = "0.1.1"
 
 [[constraint]]
   name = "gopkg.in/natefinch/lumberjack.v2"

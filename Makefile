@@ -60,7 +60,7 @@ test:
 cover: $(OVERALLS)
 	@echo ">> running test coverage"
 	@rm -f coverage.txt
-	@$(OVERALLS) -project=$(REPO_PATH) $(COVERARGS) -- -coverpkg=./... $(TESTARGS) && \
+	@$(OVERALLS) -project=$(REPO_PATH) $(COVERARGS) -- $(TESTARGS) && \
 		mv overalls.coverprofile coverage.txt
 
 
